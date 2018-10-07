@@ -17,6 +17,7 @@ public class Tela extends javax.swing.JFrame {
     String matrizProgramaDOIS[][];  
     int numLinhasUM, numLinhasDOIS;
     int maiorNumColunasUM, maiorNumColunasDOIS;
+    boolean precisaSimplificar;
     
     public Tela() {
         initComponents();
@@ -31,6 +32,7 @@ public class Tela extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTAPrograma2 = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -154,7 +156,49 @@ public class Tela extends javax.swing.JFrame {
             }
         }
         /*-------------------------------------------------------------------*/        
+        
+        /*PASSO 1*/
+        realizaPasso1();        
+        
+        /*PASSO 2*/
+        realizaPasso2();
+        
+        /*PASSO 3*/
+        if (precisaSimplificar)
+          realizaPasso3();
+
+        /*PASSO 4*/
+        realizaPasso4();        
+        
     }
+    
+    public void realizaPasso1(){
+        /*Cristian fazer aqui o código do PASSO 1*/
+    }
+    
+    public void realizaPasso2(){
+        precisaSimplificar = false;
+        /*exemplo para a entrada do passo 1:
+        1: (F,2),(parada,&)  ^
+        2: (F,2),(G,3)       |
+        3: (F,2),(parada,&)  |
+        ----------------------
+        
+        Passo 2 resolvido:
+        A0 = {&}
+        A1 = {&,3,1}
+        A2 = {&,3,1,2}
+        A3 = A2        
+        */               
+    }
+    
+    public void realizaPasso3(){
+        /*fazer aqui o código do PASSO 3*/
+    }    
+    
+    public void realizaPasso4(){
+        /*fazer aqui o código do PASSO 4*/
+    }        
     
     /**
      * @param args the command line arguments
@@ -197,6 +241,7 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextArea jTAPrograma1;
     private javax.swing.JTextArea jTAPrograma2;
     // End of variables declaration//GEN-END:variables
