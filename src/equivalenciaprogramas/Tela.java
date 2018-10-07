@@ -44,14 +44,14 @@ public class Tela extends javax.swing.JFrame {
 
         jTAPrograma2.setColumns(20);
         jTAPrograma2.setRows(5);
-        jTAPrograma2.setText("SE T1 ENTAO VAPARA 2 SENAO VAPARA 1\nFACA B VAPARA 3\nSE T2 ENTAO VAPARA 4 SENAO VAPARA 7\nSE T3 ENTAO VAPARA 3 SENAO VAPARA 5\nFACA B VAPARA 6\nFACA C VAPARA 4");
+        jTAPrograma2.setText("SE T1 ENTAO VAPARA 2 SENAO VAPARA 1\nFACA N VAPARA 3\nFACA P VAPARA 4\nSE T2 ENTAO VAPARA 5 SENAO VAPARA 6\nFACA N VAPARA 1");
         jScrollPane1.setViewportView(jTAPrograma2);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 337, 370));
 
         jTAPrograma1.setColumns(20);
         jTAPrograma1.setRows(5);
-        jTAPrograma1.setText("SE T1 ENTAO VAPARA 2 SENAO VAPARA 1\nFACA F VAPARA 3\nSE T2 ENTAO VAPARA 4 SENAO VAPARA 7\nSE T3 ENTAO VAPARA 3 SENAO VAPARA 5\nFACA F VAPARA 6\nFACA G VAPARA 4");
+        jTAPrograma1.setText("SE T1 ENTAO VAPARA 2 SENAO VAPARA 1\nFACA F VAPARA 3\nFACA G VAPARA 4\nSE T2 ENTAO VAPARA 5 SENAO VAPARA 6\nFACA F VAPARA 1");
         jScrollPane2.setViewportView(jTAPrograma1);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 29, 337, 370));

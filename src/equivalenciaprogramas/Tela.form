@@ -41,7 +41,7 @@
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="SE T1 ENTAO VAPARA 2 SENAO VAPARA 1&#xa;FACA B VAPARA 3&#xa;SE T2 ENTAO VAPARA 4 SENAO VAPARA 7&#xa;SE T3 ENTAO VAPARA 3 SENAO VAPARA 5&#xa;FACA B VAPARA 6&#xa;FACA C VAPARA 4"/>
+            <Property name="text" type="java.lang.String" value="SE T1 ENTAO VAPARA 2 SENAO VAPARA 1&#xa;FACA N VAPARA 3&#xa;FACA P VAPARA 4&#xa;SE T2 ENTAO VAPARA 5 SENAO VAPARA 6&#xa;FACA N VAPARA 1"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -62,7 +62,7 @@
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="SE T1 ENTAO VAPARA 2 SENAO VAPARA 1&#xa;FACA F VAPARA 3&#xa;SE T2 ENTAO VAPARA 4 SENAO VAPARA 7&#xa;SE T3 ENTAO VAPARA 3 SENAO VAPARA 5&#xa;FACA F VAPARA 6&#xa;FACA G VAPARA 4"/>
+            <Property name="text" type="java.lang.String" value="SE T1 ENTAO VAPARA 2 SENAO VAPARA 1&#xa;FACA F VAPARA 3&#xa;FACA G VAPARA 4&#xa;SE T2 ENTAO VAPARA 5 SENAO VAPARA 6&#xa;FACA F VAPARA 1"/>
           </Properties>
         </Component>
       </SubComponents>
