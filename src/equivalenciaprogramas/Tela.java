@@ -9,11 +9,15 @@ package equivalenciaprogramas;
  *
  * @author Fabricio
  */
+
 public class Tela extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Tela
-     */
+    /*VARIAVEIS GLOBAIS*/
+    String matrizProgramaUM[][];
+    String matrizProgramaDOIS[][];  
+    int numLinhasUM, numLinhasDOIS;
+    int maiorNumColunasUM, maiorNumColunasDOIS;
+    
     public Tela() {
         initComponents();
     }
@@ -40,13 +44,14 @@ public class Tela extends javax.swing.JFrame {
 
         jTAPrograma2.setColumns(20);
         jTAPrograma2.setRows(5);
+        jTAPrograma2.setText("SE T1 ENTAO VAPARA 2 SENAO VAPARA 1\nFACA B VAPARA 3\nSE T2 ENTAO VAPARA 4 SENAO VAPARA 7\nSE T3 ENTAO VAPARA 3 SENAO VAPARA 5\nFACA B VAPARA 6\nFACA C VAPARA 4");
         jScrollPane1.setViewportView(jTAPrograma2);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 337, 370));
 
         jTAPrograma1.setColumns(20);
         jTAPrograma1.setRows(5);
-        jTAPrograma1.setText("SE T1 ENTAO VA_PARA 2 SENAO VA_PARA 3\nFACA F VA_PARA 6\nSE T2 ENTAO VA_PARA J SENAO VA_PARA 4");
+        jTAPrograma1.setText("SE T1 ENTAO VAPARA 2 SENAO VAPARA 1\nFACA F VAPARA 3\nSE T2 ENTAO VAPARA 4 SENAO VAPARA 7\nSE T3 ENTAO VAPARA 3 SENAO VAPARA 5\nFACA F VAPARA 6\nFACA G VAPARA 4");
         jScrollPane2.setViewportView(jTAPrograma1);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 29, 337, 370));
@@ -69,43 +74,88 @@ public class Tela extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnFazTudoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnFazTudoActionPerformed
-        int numLinhas = jTAPrograma1.getLineCount();
-        String linhas[] = jTAPrograma1.getText().split("\\n");
-        String colunas[];
-        
-        int maiorNumColunas = -1;
-        for (int i = 0; i < linhas.length; i++) {            
-            colunas = linhas[i].split(" ");            
-            
-            if (colunas.length > maiorNumColunas){
-                maiorNumColunas = colunas.length;                        
-            }
-        }
-        
-        String matrizPrograma1[][] = new String[numLinhas][maiorNumColunas];  
-                     
-        for (int i = 0; i < linhas.length; i++) {            
-            colunas = linhas[i].split(" ");
-   
-            for (int c = 0; c < colunas.length; c++) {                
-                matrizPrograma1[i][c] = colunas[c];                
-            }
-        }
+        inicializaMatrizesProgramas();        
         
         System.out.println("");
+        System.out.println("PROGRAMA 1 ----------------------------------");
         
-        for (int i = 0; i < numLinhas; i++) {
-            for (int j = 0; j < maiorNumColunas; j++) {
-                if (matrizPrograma1[i][j] != null){                    
-                    System.out.println("matriz["+i+"]["+j+"] = "+matrizPrograma1[i][j]);                
+        for (int i = 0; i < numLinhasUM; i++) {
+            for (int j = 0; j < maiorNumColunasUM; j++) {
+                if (matrizProgramaUM[i][j] != null){                    
+                    System.out.println("matriz["+i+"]["+j+"] = "+matrizProgramaUM[i][j]);                
                     System.out.println("");
                 }
             }            
         }  
         
+        System.out.println("");
+        System.out.println("PROGRAMA 2 ----------------------------------");
+        
+        for (int i = 0; i < numLinhasDOIS; i++) {
+            for (int j = 0; j < maiorNumColunasDOIS; j++) {
+                if (matrizProgramaDOIS[i][j] != null){                    
+                    System.out.println("matriz["+i+"]["+j+"] = "+matrizProgramaDOIS[i][j]);                
+                    System.out.println("");
+                }
+            }            
+        }        
+        
         /*CRIAR ESTRUTURA PARA CRIAR O PASSO 1*/
     }//GEN-LAST:event_jBtnFazTudoActionPerformed
 
+    public void inicializaMatrizesProgramas(){
+        /*INICIALIZANDO MATRIZ PARA PROGRAMA 1*/
+        /*-------------------------------------------------------------------*/
+        numLinhasUM = jTAPrograma1.getLineCount();
+        String linhas[] = jTAPrograma1.getText().split("\\n");
+        String colunas[];
+        
+        maiorNumColunasUM = -1;
+        for (int i = 0; i < linhas.length; i++) {            
+            colunas = linhas[i].split(" ");            
+            
+            if (colunas.length > maiorNumColunasUM){
+                maiorNumColunasUM = colunas.length;                        
+            }
+        }
+        
+        matrizProgramaUM = new String[numLinhasUM][maiorNumColunasUM];  
+                     
+        for (int i = 0; i < linhas.length; i++) {            
+            colunas = linhas[i].split(" ");
+   
+            for (int c = 0; c < colunas.length; c++) {                
+                matrizProgramaUM[i][c] = colunas[c];                
+            }
+        }
+        /*-------------------------------------------------------------------*/        
+        
+        /*INICIALIZANDO MATRIZ PARA PROGRAMA 2*/
+        /*-------------------------------------------------------------------*/
+        numLinhasDOIS = jTAPrograma2.getLineCount();
+        linhas = jTAPrograma2.getText().split("\\n");
+        
+        maiorNumColunasDOIS = -1;
+        for (int i = 0; i < linhas.length; i++) {            
+            colunas = linhas[i].split(" ");            
+            
+            if (colunas.length > maiorNumColunasDOIS){
+                maiorNumColunasDOIS = colunas.length;                        
+            }
+        }
+        
+        matrizProgramaDOIS = new String[numLinhasDOIS][maiorNumColunasDOIS];  
+                     
+        for (int i = 0; i < linhas.length; i++) {            
+            colunas = linhas[i].split(" ");
+   
+            for (int c = 0; c < colunas.length; c++) {                
+                matrizProgramaDOIS[i][c] = colunas[c];                
+            }
+        }
+        /*-------------------------------------------------------------------*/        
+    }
+    
     /**
      * @param args the command line arguments
      */
