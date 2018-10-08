@@ -227,29 +227,11 @@ public class Tela extends javax.swing.JFrame {
             matrizB[linha][colB] = matriz[lAux][1];
             String sub = matriz[lAux][1];
             
-            matrizB[linha][colB+1] = String.valueOf(lAux +1);
-         
-            
-        // tentativas erradas
-        //    matrizB[linha][colB+1] = String.valueOf(posicaoSubrotina(sub, matriz));
-            
-        /*    if(matriz[lAnterior][colB].toLowerCase().equals("se")){
-                matrizB[linha][colB+1] = matriz[lAnterior][col];
-            }else{
-                matrizB[linha][colB+1] = matriz[lAnterior][3];
-            }
-        */
+            matrizB[linha][colB+1] = String.valueOf(lAux +1);  // trocar pela posição do rotulo e não da linha
+
         }
     }
     
-    /*public Integer posicaoSubrotina(String sub, String matriz[][]){
-        for (int i = 0; i < matriz.length; i++) {
-            if(matriz[i][1].equals(sub)){
-                return i;
-            }
-        }
-        return null;
-    }*/
     
     public void realizaPasso2(){                
         /*
