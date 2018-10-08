@@ -187,7 +187,7 @@ public class Tela extends javax.swing.JFrame {
         for (int i = 0; i < matrizProgramaUM.length; i++) {
             // caminho v
             preencheLinhaPasso1Caminho(i,"v",matrizProgramaUM,matrizPasso1ProgramaUM);
-    //      preencheLinhaPasso1Caminho(i,"f",matrizProgramaUM,matrizPasso1ProgramaUM);  
+            preencheLinhaPasso1Caminho(i,"f",matrizProgramaUM,matrizPasso1ProgramaUM);  
         }
     /*    for (int i = 0; i < matrizProgramaDOIS.length; i++) {
             // caminho v
@@ -200,31 +200,32 @@ public class Tela extends javax.swing.JFrame {
     public void preencheLinhaPasso1Caminho(int linha, String tipo, String matriz[][], String matrizB[][]){
         int lAux = linha;
         int col = tipo.equals("v")?4:7;
-
+        int colB = tipo.equals("v")?0:2;
         //Avança um
         if(!matriz[lAux][0].toLowerCase().equals("se")){
             lAux = Integer.parseInt(matriz[lAux][3])-1;
         }
         
         //enquanto continuar em testes, vai avançando
-        while (lAux <= matriz.length && matriz[lAux][0].toLowerCase().equals("se")) {   
+        while (lAux < matriz.length && matriz[lAux][0].toLowerCase().equals("se")) {   
             lAux = Integer.parseInt(matriz[lAux][col])-1;
             //loop em testes
             if (lAux == linha){
-                matrizB[linha][0] = "Ciclo";
-                matrizB[linha][1] = "w";
+                matrizB[linha][colB] = "Ciclo";
+                matrizB[linha][colB+1] = "w";
+                return;
             }
         }
         
         if(lAux >= matriz.length){
-            matrizB[linha][0] = "Parada";
-            matrizB[linha][1] = "&";
+            matrizB[linha][colB] = "Parada";
+            matrizB[linha][colB+1] = "&";
         }else{
-            matrizB[linha][0] = matriz[lAux][1];
-            if(matriz[linha][0].toLowerCase().equals("se")){
-                matrizB[linha][1] = matriz[linha][col];
+            matrizB[linha][colB] = matriz[lAux][1];
+            if(matriz[linha][colB].toLowerCase().equals("se")){
+                matrizB[linha][colB+1] = matriz[linha][col];
             }else{
-                matrizB[linha][1] = matriz[linha][3];
+                matrizB[linha][colB+1] = matriz[linha][3];
             }
         }
     }
