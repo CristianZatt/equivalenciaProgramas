@@ -216,7 +216,11 @@ public class Tela extends javax.swing.JFrame {
             matrizB[linha][1] = "&";
         }else{
             matrizB[linha][0] = matriz[lAux][1];
-            matrizB[linha][1] = matriz[linha][col];
+            if(matriz[linha][0].toLowerCase().equals("se")){
+                matrizB[linha][1] = matriz[linha][col];
+            }else{
+                matrizB[linha][1] = matriz[linha][3];
+            }
         }
     }
 
