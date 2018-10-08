@@ -192,7 +192,9 @@ public class Tela extends javax.swing.JFrame {
         int col = tipo.equals("v")?4:7;
 
         //Avança um
-        lAux = Integer.parseInt(matriz[lAux][3])-1;
+        if(!matriz[lAux][0].toLowerCase().equals("se")){
+            lAux = Integer.parseInt(matriz[lAux][3])-1;
+        }
         
         //enquanto continuar em testes, vai avançando
         while (matriz[lAux][0].toLowerCase().equals("se") && lAux <= matriz.length) {   
