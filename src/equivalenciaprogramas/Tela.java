@@ -14,7 +14,9 @@ public class Tela extends javax.swing.JFrame {
 
     /*VARIAVEIS GLOBAIS*/
     String matrizProgramaUM[][];
-    String matrizProgramaDOIS[][];  
+    String matrizProgramaDOIS[][];
+    String matrizPasso1ProgramaUM[][];
+    String matrizPasso1ProgramaDOIS[][];
     int numLinhasUM, numLinhasDOIS;
     int maiorNumColunasUM, maiorNumColunasDOIS;
     boolean precisaSimplificar;
@@ -174,7 +176,42 @@ public class Tela extends javax.swing.JFrame {
     
     public void realizaPasso1(){
         /*Cristian fazer aqui o código do PASSO 1*/
+        matrizPasso1ProgramaUM = new String[matrizProgramaUM.length][4];
+        matrizPasso1ProgramaDOIS = new String[matrizProgramaDOIS.length][4];
+                
+        for (int i = 0; i < matrizProgramaUM.length; i++) {
+            // caminho v
+            preencheLinhaPasso1Caminho(i,"v",matrizProgramaUM,matrizPasso1ProgramaUM);
+            
+        }
+        
     }
+    
+    public void preencheLinhaPasso1Caminho(int linha, String tipo, String matriz[][], String matrizB[][]){
+        int lAux = linha;
+        int col = tipo.equals("v")?4:7;
+
+        //Avança um
+        lAux = Integer.parseInt(matriz[lAux][3])-1;
+        
+        //enquanto continuar em testes, vai avançando
+        while (matriz[lAux][0].toLowerCase().equals("se") && lAux <= matriz.length) {   
+            lAux = Integer.parseInt(matriz[lAux][col])-1;
+            if (lAux == linha){
+                matrizB[linha][0] = "Ciclo";
+                matrizB[linha][1] = "w";
+            }
+        }
+        
+        if(lAux >= matriz.length){
+            matrizB[linha][0] = "Parada";
+            matrizB[linha][1] = "&";
+        }else{
+            matrizB[linha][0] = matriz[lAux][1];
+            matrizB[linha][1] = matriz[linha][col];
+        }
+    }
+
     
     public void realizaPasso2(){
         precisaSimplificar = false;
