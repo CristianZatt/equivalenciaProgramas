@@ -182,9 +182,14 @@ public class Tela extends javax.swing.JFrame {
         for (int i = 0; i < matrizProgramaUM.length; i++) {
             // caminho v
             preencheLinhaPasso1Caminho(i,"v",matrizProgramaUM,matrizPasso1ProgramaUM);
-            
+    //      preencheLinhaPasso1Caminho(i,"f",matrizProgramaUM,matrizPasso1ProgramaUM);  
         }
-        
+    /*    for (int i = 0; i < matrizProgramaDOIS.length; i++) {
+            // caminho v
+            preencheLinhaPasso1Caminho(i,"v",matrizProgramaDOIS,matrizPasso1ProgramaDOIS);
+            preencheLinhaPasso1Caminho(i,"f",matrizProgramaDOIS,matrizPasso1ProgramaDOIS);  
+        }
+    */    
     }
     
     public void preencheLinhaPasso1Caminho(int linha, String tipo, String matriz[][], String matrizB[][]){
@@ -199,6 +204,7 @@ public class Tela extends javax.swing.JFrame {
         //enquanto continuar em testes, vai avançando
         while (matriz[lAux][0].toLowerCase().equals("se") && lAux <= matriz.length) {   
             lAux = Integer.parseInt(matriz[lAux][col])-1;
+            //loop em testes
             if (lAux == linha){
                 matrizB[linha][0] = "Ciclo";
                 matrizB[linha][1] = "w";
