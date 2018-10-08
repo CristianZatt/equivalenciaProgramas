@@ -189,17 +189,17 @@ public class Tela extends javax.swing.JFrame {
             preencheLinhaPasso1Caminho(i,"v",matrizProgramaUM,matrizPasso1ProgramaUM);
             preencheLinhaPasso1Caminho(i,"f",matrizProgramaUM,matrizPasso1ProgramaUM);  
         }
-    /*    for (int i = 0; i < matrizProgramaDOIS.length; i++) {
+        for (int i = 0; i < matrizProgramaDOIS.length; i++) {
             // caminho v
             preencheLinhaPasso1Caminho(i,"v",matrizProgramaDOIS,matrizPasso1ProgramaDOIS);
             preencheLinhaPasso1Caminho(i,"f",matrizProgramaDOIS,matrizPasso1ProgramaDOIS);  
         }
-    */    
+        
     }
     
     public void preencheLinhaPasso1Caminho(int linha, String tipo, String matriz[][], String matrizB[][]){
         int lAux = linha;
-        int lAnterior;
+        int lAnterior = linha;
         int col = tipo.equals("v")?4:7;
         int colB = tipo.equals("v")?0:2;
         //Avança um
@@ -225,14 +225,31 @@ public class Tela extends javax.swing.JFrame {
             matrizB[linha][colB+1] = "&";
         }else{
             matrizB[linha][colB] = matriz[lAux][1];
-            if(matriz[linha][colB].toLowerCase().equals("se")){
-                matrizB[linha][colB+1] = matriz[linha][col];
+            String sub = matriz[lAux][1];
+            
+            matrizB[linha][colB+1] = String.valueOf(lAux +1);
+         
+            
+        // tentativas erradas
+        //    matrizB[linha][colB+1] = String.valueOf(posicaoSubrotina(sub, matriz));
+            
+        /*    if(matriz[lAnterior][colB].toLowerCase().equals("se")){
+                matrizB[linha][colB+1] = matriz[lAnterior][col];
             }else{
-                matrizB[linha][colB+1] = matriz[linha][3];
+                matrizB[linha][colB+1] = matriz[lAnterior][3];
             }
+        */
         }
     }
-
+    
+    /*public Integer posicaoSubrotina(String sub, String matriz[][]){
+        for (int i = 0; i < matriz.length; i++) {
+            if(matriz[i][1].equals(sub)){
+                return i;
+            }
+        }
+        return null;
+    }*/
     
     public void realizaPasso2(){                
         /*
