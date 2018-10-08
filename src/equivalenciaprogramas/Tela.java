@@ -5,6 +5,8 @@
  */
 package equivalenciaprogramas;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Fabricio
@@ -20,6 +22,8 @@ public class Tela extends javax.swing.JFrame {
     int numLinhasUM, numLinhasDOIS;
     int maiorNumColunasUM, maiorNumColunasDOIS;
     boolean precisaSimplificar;
+    String matrizPassoDOISProgramaUM[][];
+    String matrizPassoDOISProgramaDOIS[][];    
     
     public Tela() {
         initComponents();
@@ -80,6 +84,7 @@ public class Tela extends javax.swing.JFrame {
     private void jBtnFazTudoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnFazTudoActionPerformed
         inicializaMatrizesProgramas();        
         
+        /*
         System.out.println("");
         System.out.println("PROGRAMA 1 ----------------------------------");
         
@@ -103,8 +108,8 @@ public class Tela extends javax.swing.JFrame {
                 }
             }            
         }        
-        
-        /*CRIAR ESTRUTURA PARA CRIAR O PASSO 1*/
+        */
+                
     }//GEN-LAST:event_jBtnFazTudoActionPerformed
 
     public void inicializaMatrizesProgramas(){
@@ -225,20 +230,147 @@ public class Tela extends javax.swing.JFrame {
     }
 
     
-    public void realizaPasso2(){
-        precisaSimplificar = false;
-        /*exemplo para a entrada do passo 1:
-        1: (F,2),(parada,&)  ^
-        2: (F,2),(G,3)       |
-        3: (F,2),(parada,&)  |
-        ----------------------
-        
+    public void realizaPasso2(){                
+        /*
+        Entrada vinda do passo 1:
+        /*    0      1     2      3
+        0 | F     | 2 | ciclo  | w | 
+        1 | G     | 3 | G      | 3 |
+        2 | F     | 4 | parada | & | <--- linhaParadaProgramaUM
+        3 | F     | 2 | ciclo  | w |
+        4 | ciclo | w | ciclo  | w |
+
         Passo 2 resolvido:
         A0 = {&}
-        A1 = {&,3,1}
-        A2 = {&,3,1,2}
-        A3 = A2        
-        */               
+        A1 = {&,3}
+        A2 = {&,3,2}
+        A3 = {&,3,2,1,4}
+        A4 = A3        
+        */         
+        
+        String matrizPassoUMProgramaUM[][] = new String[5][4];
+        matrizPassoUMProgramaUM[0][0] = "F";
+        matrizPassoUMProgramaUM[0][1] = "2";
+        matrizPassoUMProgramaUM[0][2] = "ciclo";
+        matrizPassoUMProgramaUM[0][3] = "w";
+ 
+        matrizPassoUMProgramaUM[1][0] = "G";
+        matrizPassoUMProgramaUM[1][1] = "3";
+        matrizPassoUMProgramaUM[1][2] = "G";
+        matrizPassoUMProgramaUM[1][3] = "3";
+
+        matrizPassoUMProgramaUM[2][0] = "F";
+        matrizPassoUMProgramaUM[2][1] = "4";
+        matrizPassoUMProgramaUM[2][2] = "parada";
+        matrizPassoUMProgramaUM[2][3] = "&";
+
+        matrizPassoUMProgramaUM[3][0] = "F";
+        matrizPassoUMProgramaUM[3][1] = "2";
+        matrizPassoUMProgramaUM[3][2] = "ciclo";
+        matrizPassoUMProgramaUM[3][3] = "w";
+
+        matrizPassoUMProgramaUM[4][0] = "ciclo";
+        matrizPassoUMProgramaUM[4][1] = "w";
+        matrizPassoUMProgramaUM[4][2] = "ciclo";
+        matrizPassoUMProgramaUM[4][3] = "w";
+        
+        precisaSimplificar = false;
+        //int linhaParadaProgramaUM = retornaUltimaLinhaParada(matrizPassoUMProgramaUM);
+        int linhaParadaProgramaUM = 2;
+        
+        if (linhaParadaProgramaUM == -1){
+            JOptionPane.showMessageDialog(rootPane, "O programa não possui Rótulo de parada");
+        }
+        else{
+            //matrizPassoDOISProgramaUM =  new String[numLinhasUM+2][2]; //+2 para as linhas extras: A0 e An=An-1        
+            matrizPassoDOISProgramaUM =  new String[5+2][2]; //+2 para as linhas extras: A0 e An=An-1        
+            String linhasUsadas=""; //vai concatenar as linhas que farão parte da resposta do passo 2, já em ordem
+            String linhasIguais; //vai armazenar as linhas que são iguais entre si            
+            
+            //percorre da última linha de parada até a linha do primeiro rotulo
+            for (int i = linhaParadaProgramaUM; i >= 0; i--) {  
+                
+                //linhasUsadas = "";
+                linhasIguais = "";
+                //para cada linha do for acima, percorre desde a linhaParadaProgramaUM-1 até linha 0 (rotulo 0)
+                for (int j = linhaParadaProgramaUM-1; j >= 0; j--) {                
+                    
+                    if(! linhasUsadas.contains(String.valueOf(j))){ //somente caso não tenha sido usada ainda
+                        //comparar se existe alguma linha com conteúdo igual
+                        if (matrizPassoUMProgramaUM[i][0].equals(matrizPassoUMProgramaUM[j][0]) &&
+                            matrizPassoUMProgramaUM[i][1].equals(matrizPassoUMProgramaUM[j][1]) &&
+                            matrizPassoUMProgramaUM[i][2].equals(matrizPassoUMProgramaUM[j][2]) &&
+                            matrizPassoUMProgramaUM[i][3].equals(matrizPassoUMProgramaUM[j][3])){
+
+                            //salva esta linha
+                            if (linhasIguais.equals("")){ //primeira linha igual / só uma linha igual
+                                linhasIguais = String.valueOf(j); 
+                            }
+                            else{ //caso tenha mais linhas iguais
+                                linhasIguais = linhasIguais + "," + String.valueOf(j); //concatenando separado por virgula
+                            }                    
+                        }
+                    }                
+                }
+
+                //para cada linha do for acima, percorre desde a última linha da matriz até antes da linhaParadaProgramaUM
+                //cobrindo assim o restante das linhas que ficaram de fora
+                for (int j = matrizPassoUMProgramaUM.length-1; j > linhaParadaProgramaUM; j--) {                
+                    //comparar se existe alguma linha com conteúdo igual
+                    if(! linhasUsadas.contains(String.valueOf(j))){ //somente caso não tenha sido usada ainda
+                        if (matrizPassoUMProgramaUM[i][0].equals(matrizPassoUMProgramaUM[j][0]) &&
+                            matrizPassoUMProgramaUM[i][1].equals(matrizPassoUMProgramaUM[j][1]) &&
+                            matrizPassoUMProgramaUM[i][2].equals(matrizPassoUMProgramaUM[j][2]) &&
+                            matrizPassoUMProgramaUM[i][3].equals(matrizPassoUMProgramaUM[j][3])){
+
+                            //salva esta linha
+                            if (linhasIguais.equals("")){ //primeira linha igual / só uma linha igual
+                                linhasIguais = String.valueOf(j); 
+                            }
+                            else{ //caso tenha mais linhas iguais
+                                linhasIguais = linhasIguais + "," + String.valueOf(j); //concatenando separado por virgula
+                            }                    
+                        }  
+                    }
+                }    
+
+                //atualizando variavel que guarda as linhas que montarão a saída do passo 2
+                if (linhasIguais.equals("")){ //caso não haja linhas iguais, utiliza a própria linha                                                
+                    if (linhasUsadas.equals("")){
+                        linhasUsadas = String.valueOf(i); 
+                    }
+                    else{
+                        linhasUsadas = linhasUsadas + "," + String.valueOf(i); //concatenando separado por virgula
+                    }                 
+                }
+                else{ //senão, usa as linhasIguais encontradas
+                    if (linhasUsadas.equals("")){
+                        linhasUsadas = linhasIguais; 
+                    }
+                    else{
+                        linhasUsadas = linhasUsadas + "," + linhasIguais; //concatenando separado por virgula
+                    }                  
+                }
+                
+                System.out.println("linhasUsadas = "+linhasUsadas);                
+                matrizPassoDOISProgramaUM[i][1] = linhasUsadas;
+            }            
+        }
+        
+        /*MOSTRANDO RESULTADO*/
+        int contador=0;
+        System.out.println("PASSO 2 RESULTADO PROGRAMA 1 -----------------------");
+        for (int i = 5-1; i >= 0; i--) {            
+            if (matrizPassoDOISProgramaUM[i][1] != null){                    
+                System.out.print("A"+contador+" = {&,"+matrizPassoDOISProgramaUM[i][1]+"}");                
+                System.out.println("");
+                contador++;
+            }    
+        }  
+        
+        /*DUPLICAR TUDO PARA O PROGRAMA 2*/
+        
+        /*TESTAR SE PRECISA FAZER PASSO 3 - SIMPLIFICAÇÃO*/
     }
     
     public void realizaPasso3(){
