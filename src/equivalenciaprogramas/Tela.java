@@ -202,7 +202,7 @@ public class Tela extends javax.swing.JFrame {
         }
         
         //enquanto continuar em testes, vai avançando
-        while (matriz[lAux][0].toLowerCase().equals("se") && lAux <= matriz.length) {   
+        while (lAux <= matriz.length && matriz[lAux][0].toLowerCase().equals("se")) {   
             lAux = Integer.parseInt(matriz[lAux][col])-1;
             //loop em testes
             if (lAux == linha){
