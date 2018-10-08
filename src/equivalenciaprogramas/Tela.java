@@ -199,18 +199,21 @@ public class Tela extends javax.swing.JFrame {
     
     public void preencheLinhaPasso1Caminho(int linha, String tipo, String matriz[][], String matrizB[][]){
         int lAux = linha;
+        int lAnterior;
         int col = tipo.equals("v")?4:7;
         int colB = tipo.equals("v")?0:2;
         //Avança um
         if(!matriz[lAux][0].toLowerCase().equals("se")){
+            lAnterior = lAux;
             lAux = Integer.parseInt(matriz[lAux][3])-1;
         }
         
         //enquanto continuar em testes, vai avançando
-        while (lAux < matriz.length && matriz[lAux][0].toLowerCase().equals("se")) {   
+        while (lAux < matriz.length && matriz[lAux][0].toLowerCase().equals("se")) { 
+            lAnterior = lAux;
             lAux = Integer.parseInt(matriz[lAux][col])-1;
             //loop em testes
-            if (lAux == linha){
+            if (lAux == linha || lAux == lAnterior){
                 matrizB[linha][colB] = "Ciclo";
                 matrizB[linha][colB+1] = "w";
                 return;
